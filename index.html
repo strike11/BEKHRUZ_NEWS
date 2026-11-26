@@ -3,251 +3,197 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BEKHRUZ NEWS — Aloha Hawaiian Broadcast</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <title>Bekhruz News</title>
+  <link rel="preload" href="assets/fonts/fraunces-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/fraunces-italic-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/oswald-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="css/fonts.css" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <div id="app" class="app-shell">
-    <!-- 16:9 Hawaiian Sunset Broadcast Stage -->
-    <main id="stage" class="broadcast-stage" aria-label="Presentation Stage">
+  <div class="shell">
+    <main id="stage" class="stage">
 
-      <!-- Hawaiian Sunset Horizon, Ocean Waves & Diamond Head Island Silhouette -->
-      <div class="hawaii-sky-backdrop" aria-hidden="true">
-        <div class="sunset-sun-glow" id="sunset-sun-glow"></div>
-        <!-- Distant Volcanic Islands & Ocean Shimmer -->
-        <svg class="island-horizon-svg" viewBox="0 0 1920 360" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="oceanGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#0d6e7a" stop-opacity="0.72" />
-              <stop offset="45%" stop-color="#06394c" stop-opacity="0.88" />
-              <stop offset="100%" stop-color="#021520" stop-opacity="0.98" />
-            </linearGradient>
-            <linearGradient id="sunPathGrad" x1="0.5" y1="0" x2="0.5" y2="1">
-              <stop offset="0%" stop-color="#fde047" stop-opacity="0.75" />
-              <stop offset="50%" stop-color="#f97316" stop-opacity="0.38" />
-              <stop offset="100%" stop-color="#f97316" stop-opacity="0" />
-            </linearGradient>
-            <linearGradient id="volcanoSil" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#2e1527" />
-              <stop offset="100%" stop-color="#081b26" />
-            </linearGradient>
-          </defs>
-          <!-- Distant Oahu / Diamond Head & Maui silhouettes -->
-          <path d="M0,210 L110,192 L195,152 L265,146 L345,175 L460,198 L580,210 Z" fill="url(#volcanoSil)" opacity="0.85" />
-          <path d="M1340,210 L1460,185 L1565,134 L1610,128 L1685,158 L1790,178 L1920,210 Z" fill="url(#volcanoSil)" opacity="0.85" />
-          <!-- Pacific Ocean Surface -->
-          <rect x="0" y="205" width="1920" height="155" fill="url(#oceanGrad)" />
-          <!-- Golden Sunset Reflection Shimmer on Water -->
-          <polygon points="820,205 1100,205 1290,360 630,360" fill="url(#sunPathGrad)" />
-          <g class="ocean-shimmer-lines" stroke="#fde047" stroke-linecap="round">
-            <line x1="870" y1="216" x2="1050" y2="216" stroke-width="2.5" opacity="0.8" />
-            <line x1="840" y1="228" x2="1080" y2="228" stroke-width="2.2" opacity="0.65" />
-            <line x1="890" y1="242" x2="1030" y2="242" stroke-width="2.5" opacity="0.7" />
-            <line x1="810" y1="258" x2="1110" y2="258" stroke-width="2" opacity="0.5" />
-            <line x1="850" y1="276" x2="1070" y2="276" stroke-width="2.8" opacity="0.55" />
-            <line x1="780" y1="298" x2="1140" y2="298" stroke-width="2" opacity="0.4" />
-          </g>
-        </svg>
-      </div>
+      <!-- backdrop: sky, sea, palms -->
+      <canvas id="scene" class="scene" aria-hidden="true"></canvas>
+      <div class="vignette" aria-hidden="true"></div>
 
-      <!-- True 3D WebGL Photorealistic Earth Globe Container -->
-      <div id="webgl-globe-container" class="webgl-globe-container" aria-hidden="true"></div>
+      <div class="progress" aria-hidden="true"><div id="progress-fill" class="progress-fill"></div></div>
 
-      <!-- 2D Overlay Canvas for Ukulele Shockwaves, Hibiscus Bursts & Tropical Fireflies -->
-      <canvas id="broadcast-canvas" class="broadcast-canvas"></canvas>
-
-      <!-- Warm Sunset Vignette & Tiki Woven Pattern Frame -->
-      <div class="broadcast-vignette" aria-hidden="true"></div>
-      <div class="tiki-border-top" aria-hidden="true"></div>
-
-      <!-- Realistic Multi-Frond Coconut Palm Trees, Monstera & Hibiscus Flowers -->
-      <div id="palm-jungle-layer" class="palm-jungle-layer" aria-hidden="true"></div>
-
-      <!-- Top Engine Progress Bar -->
-      <div class="engine-progress-track" aria-hidden="true">
-        <div class="engine-progress-fill" id="engine-progress-fill"></div>
-      </div>
-
-      <!-- Persistent Top Broadcast HUD -->
-      <header class="broadcast-hud-top" aria-hidden="true">
-        <div class="live-badge" id="live-badge">
-          <span class="live-hibiscus">🌺</span>
-          <span class="live-dot"></span>
-          <span class="live-text" id="hud-act-label">ALOHA • LIVE</span>
-          <span class="live-sep">•</span>
-          <span class="live-clock" id="live-clock">00:00:00</span>
+      <header id="hud" class="hud">
+        <div class="hud-brand">
+          <img src="assets/logo.jpg" alt="" class="hud-logo" />
+          <span class="hud-name">Bekhruz</span>
+          <span class="hud-news">News</span>
         </div>
-
-        <div class="channel-bug" id="channel-bug">
-          <div class="channel-logo-ring">
-            <img src="assets/logo.jpg" alt="BEKHRUZ NEWS Logo" class="channel-logo-img" />
-            <div class="lei-ring"></div>
-          </div>
-          <div class="channel-label">
-            <span class="ch-main">BEKHRUZ</span>
-            <span class="ch-sub">HAWAII • NEWS</span>
-          </div>
+        <div class="hud-live">
+          <span class="live-dot"></span>
+          <span>Live</span>
+          <span class="hud-sep"></span>
+          <span id="clock">00:00</span>
         </div>
       </header>
 
-      <!-- SCENE 0: Pre-Air Standby Screen -->
-      <section id="scene-standby" class="scene scene-standby active" data-scene="standby">
-        <div class="standby-glass">
-          <div class="tiki-corner tiki-tl">🌺</div>
-          <div class="tiki-corner tiki-tr">🌺</div>
-          <div class="standby-logo-wrap">
-            <img src="assets/logo.jpg" alt="BEKHRUZ NEWS Logo" class="standby-logo-img" />
-            <span class="logo-hibiscus-badge">🌺</span>
-          </div>
-          <div class="standby-status">
-            <span class="status-pulse"></span>
-            <span>HONOLULU BEACH STUDIO • READY FOR BROADCAST</span>
-          </div>
-          <h1 class="standby-title">BEKHRUZ NEWS</h1>
-          <p class="standby-subtitle">🌴 ALOHA HAWAIIAN EDITION • BREAKING NEWS 🌴</p>
+      <!-- title screen -->
+      <section id="standby" class="screen standby is-active">
+        <div class="masthead">
+          <div class="stamp"><img src="assets/logo.jpg" alt="Bekhruz News logo" /></div>
+          <p class="eyebrow">Weekly edition &middot; <span data-date="short"></span></p>
+          <h1 class="wordmark">
+            <span class="wm-main" data-text="Bekhruz">Bekhruz</span>
+            <span class="wm-news">News</span>
+          </h1>
           <div class="standby-actions">
-            <button id="btn-start-air" class="btn-on-air" type="button">
-              <span class="btn-on-air-glow"></span>
-              <span class="btn-on-air-icon">▶</span>
-              <span>GO ON AIR</span>
+            <button id="btn-start" class="btn-primary" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" /></svg>
+              Start broadcast
             </button>
-            <button id="btn-fullscreen-standby" class="btn-secondary" type="button" title="Fullscreen (F)">
-              ⛶ Fullscreen
-            </button>
+            <button id="btn-fullscreen" class="btn-ghost" type="button">Full screen</button>
           </div>
-          <p class="standby-hint">Press <strong>Space</strong> or <strong>Enter</strong> to launch ukulele-synced intro • <strong>G</strong> Slide Deck • <strong>F</strong> Fullscreen</p>
+        </div>
+        <p class="keys"><kbd>Space</kbd> start &nbsp;&middot;&nbsp; <kbd>F</kbd> full screen &nbsp;&middot;&nbsp; <kbd>G</kbd> all slides</p>
+      </section>
+
+      <!-- opening titles -->
+      <section id="intro" class="screen intro" aria-hidden="true">
+        <div class="aloha">
+          <h2 id="aloha-word" class="aloha-word">Aloha</h2>
+          <p id="aloha-sub" class="aloha-sub">This week on Bekhruz News</p>
+        </div>
+
+        <!-- the four sections shown in the opening; keep them in sync with the first slide -->
+        <div id="topics" class="topics">
+          <div class="topic"><span class="topic-num">01 &mdash; 04</span><span class="topic-mask"><span class="topic-line">World</span></span><span class="topic-rule"></span></div>
+          <div class="topic"><span class="topic-num">02 &mdash; 04</span><span class="topic-mask"><span class="topic-line">Economy</span></span><span class="topic-rule"></span></div>
+          <div class="topic"><span class="topic-num">03 &mdash; 04</span><span class="topic-mask"><span class="topic-line">Technology</span></span><span class="topic-rule"></span></div>
+          <div class="topic"><span class="topic-num">04 &mdash; 04</span><span class="topic-mask"><span class="topic-line">Culture</span></span><span class="topic-rule"></span></div>
+        </div>
+
+        <div id="leaves" class="leaves"></div>
+
+        <div id="title" class="title">
+          <div class="stamp"><img src="assets/logo.jpg" alt="" /></div>
+          <p class="eyebrow">Weekly edition</p>
+          <h1 class="wordmark">
+            <span class="wm-main">Bekhruz</span>
+            <span class="wm-news">News</span>
+          </h1>
+          <p class="title-date" data-date="long"></p>
         </div>
       </section>
 
-      <!-- SCENE 1: 3D Hawaiian Breaking News Intro (Choreographed to 00:00 - 00:24.3 of your Ukulele Track) -->
-      <section id="scene-intro" class="scene scene-intro" data-scene="intro">
-        <div class="flare-horizontal" id="intro-flare-h"></div>
-        <div class="flare-core" id="intro-flare-core"></div>
+      <!-- slides -->
+      <div id="slides" class="slides">
 
-        <!-- Ukulele Opening Pluck Callouts (0.0s - 4.4s) -->
-        <div class="ukulele-pluck-layer" id="ukulele-pluck-layer" aria-hidden="true">
-          <div class="pluck-callout" id="pluck-callout-1">🌺 ALOHA PACIFIC SIGNAL</div>
-          <div class="pluck-callout" id="pluck-callout-2">🌴 LIVE FROM HONOLULU, HAWAII</div>
-        </div>
-
-        <!-- 3D Orbital Sunset Gold & Lagoon Rings (Snap in on Bass Drop at 4.5s) -->
-        <div class="orbital-rings" id="intro-rings">
-          <div class="ring ring-1"></div>
-          <div class="ring ring-2"></div>
-          <div class="ring ring-3"></div>
-        </div>
-
-        <!-- 3D Orbiting Hawaiian News Cards (Spawn 1-by-1 on the 8 Ukulele Plucks 2.15s - 3.9s!) -->
-        <div class="orbit-cards-stage" id="orbit-cards-stage" aria-hidden="true"></div>
-
-        <!-- Kinetic Category Flashes (Synced to the 4 Main Melody Phrases 7.3s - 14.8s) -->
-        <div class="kinetic-flash-layer" id="kinetic-layer">
-          <span class="kinetic-word" data-at="7.35">🌊 PACIFIC • BREAKING NEWS</span>
-          <span class="kinetic-word" data-at="9.25">🌋 KILAUEA &amp; ISLAND WATCH</span>
-          <span class="kinetic-word" data-at="11.15">🏄 WAIKIKI &amp; NORTH SHORE</span>
-          <span class="kinetic-word" data-at="13.10">🍍 TROPICAL ECONOMY &amp; TECH</span>
-        </div>
-
-        <!-- Grand 3D Title Lockup (Explodes on the High Tremolo Solo at 15.75s - 24.3s!) -->
-        <div class="intro-title-lockup" id="intro-lockup">
-          <div class="lockup-logo-badge" id="lockup-logo-badge">
-            <img src="assets/logo.jpg" alt="BEKHRUZ NEWS Logo" class="lockup-logo-img" />
-            <span class="logo-hibiscus-badge">🌺</span>
-          </div>
-          <div class="lockup-top-bar">
-            <span class="breaking-pill">🔥 BREAKING NEWS</span>
-            <span class="edition-tag">🌴 HAWAIIAN EDITION</span>
-          </div>
-          <div class="lockup-main-wrap">
-            <h1 class="lockup-main" data-text="BEKHRUZ NEWS">BEKHRUZ NEWS</h1>
-            <div class="lockup-shine"></div>
-          </div>
-          <div class="lockup-divider"></div>
-          <p class="lockup-sub">🌺 LIVE FROM THE PACIFIC • PUBLIC SPEAKING PROJECT 🌺</p>
-        </div>
-
-        <!-- 36-Bar Beat-Reactive Ukulele Spectrum Visualizer -->
-        <div class="spectrum-bars" id="spectrum-bars" aria-hidden="true"></div>
-      </section>
-
-      <!-- SLIDES CONTAINER -->
-      <div id="slides-container" class="slides-container">
-        <section class="scene scene-slide" data-scene="slide" data-title="Aloha Beach Studio" data-transition="zoom-3d">
-          <div class="studio-placeholder">
-            <div class="tiki-corner tiki-tl">🌺</div>
-            <div class="tiki-corner tiki-tr">🌺</div>
-            <div class="studio-badge">🌴 ON AIR • WAIKIKI BEACH STUDIO</div>
-            <h2 class="studio-heading">ALOHA &amp; WELCOME TO <span class="accent-coral">BEKHRUZ NEWS</span></h2>
-            <p class="studio-desc">
-              Your 3D Hawaiian broadcast studio is live and grooving to your ukulele soundtrack! Add your weekly news slides inside <code>#slides-container</code> or press <strong>G</strong> to open the slide deck.
-            </p>
-            <div class="studio-controls-preview">
-              <button id="btn-replay-intro" class="btn-on-air btn-compact" type="button">
-                ↺ Replay Ukulele Intro
-              </button>
+        <section class="slide" data-title="Welcome">
+          <article class="card card-welcome">
+            <div class="welcome-main">
+              <p class="kicker r" style="--i:0">Weekly edition &middot; <span data-date="short"></span></p>
+              <h2 class="headline r" style="--i:1">Aloha, and welcome to Bekhruz&nbsp;News</h2>
+              <p class="lead r" style="--i:2">Here is what happened this week, from the biggest world stories to the ideas changing how we live.</p>
             </div>
-          </div>
+            <div class="welcome-rundown">
+              <p class="rundown-label r" style="--i:2">In this edition</p>
+              <ol class="rundown">
+                <li class="r" style="--i:3"><span class="rd-num">01</span><span class="rd-name">World</span></li>
+                <li class="r" style="--i:4"><span class="rd-num">02</span><span class="rd-name">Economy</span></li>
+                <li class="r" style="--i:5"><span class="rd-num">03</span><span class="rd-name">Technology</span></li>
+                <li class="r" style="--i:6"><span class="rd-num">04</span><span class="rd-name">Culture</span></li>
+              </ol>
+            </div>
+            <div class="postmark" aria-hidden="true">
+              <svg viewBox="0 0 120 120">
+                <defs><path id="pm-circle" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0" /></defs>
+                <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" stroke-width="2" />
+                <circle cx="60" cy="60" r="33" fill="none" stroke="currentColor" stroke-width="1.5" />
+                <text font-size="11.5" letter-spacing="3.2" fill="currentColor"><textPath href="#pm-circle">BEKHRUZ NEWS &#8226; WEEKLY EDITION &#8226;</textPath></text>
+                <text x="60" y="66" text-anchor="middle" font-size="17" fill="currentColor" class="pm-mid">ALOHA</text>
+              </svg>
+            </div>
+            <div class="postage r" style="--i:2" aria-hidden="true"><img src="assets/logo.jpg" alt="" /></div>
+          </article>
         </section>
+
+        <!--
+          To add a news story, copy this block above the closing </div> of #slides,
+          remove the comment marks and change the text. Each slide gets a number automatically.
+
+        <section class="slide" data-title="World — headline">
+          <article class="card card-story">
+            <div class="story-text">
+              <p class="kicker r" style="--i:0">01 &middot; World</p>
+              <h2 class="headline r" style="--i:1">The headline of the story</h2>
+              <p class="lead r" style="--i:2">One or two sentences that explain what happened.</p>
+              <ul class="facts">
+                <li class="r" style="--i:3">First key fact</li>
+                <li class="r" style="--i:4">Second key fact</li>
+                <li class="r" style="--i:5">Why it matters</li>
+              </ul>
+            </div>
+            <figure class="story-photo r" style="--i:2">
+              <img src="assets/your-photo.jpg" alt="" />
+              <figcaption>Photo caption</figcaption>
+            </figure>
+          </article>
+        </section>
+        -->
+
       </div>
 
-      <!-- Slide Overview Grid Overlay (G key) -->
-      <aside id="overview-modal" class="overview-modal" aria-hidden="true">
-        <div class="overview-header">
-          <h3>🌺 BEKHRUZ NEWS — HAWAIIAN SLIDE DECK</h3>
-          <button id="btn-close-overview" class="ctrl-btn" type="button">✕ Close (Esc)</button>
-        </div>
-        <div id="overview-grid" class="overview-grid"></div>
-      </aside>
-
-      <!-- Persistent Lower-Third News Ticker -->
-      <footer class="broadcast-lower-third" id="lower-third">
-        <div class="lt-wave-trim" aria-hidden="true"></div>
-        <div class="lt-breaking-box">
-          <span class="lt-breaking-label">🌺 ALOHA BREAKING</span>
-        </div>
-        <div class="lt-ticker-track">
-          <div class="lt-ticker-content" id="ticker-content">
-            <span>🌴 BEKHRUZ NEWS: LIVE FROM HONOLULU, HAWAII</span>
-            <span class="ticker-sep">🌺</span>
-            <span>🌊 NORTH SHORE SWELL &amp; PACIFIC WEATHER REPORT</span>
-            <span class="ticker-sep">🌺</span>
-            <span>🌋 KILAUEA &amp; MAUNA LOA OBSERVATORY UPDATE</span>
-            <span class="ticker-sep">🌺</span>
-            <span>🍍 PUBLIC SPEAKING UNIVERSITY PROJECT — WEEKLY NEWS</span>
-            <span class="ticker-sep">🌺</span>
-            <span>🌴 BEKHRUZ NEWS: LIVE FROM HONOLULU, HAWAII</span>
-            <span class="ticker-sep">🌺</span>
-            <span>🌊 NORTH SHORE SWELL &amp; PACIFIC WEATHER REPORT</span>
-            <span class="ticker-sep">🌺</span>
+      <!-- news ticker -->
+      <footer id="ticker" class="ticker">
+        <div class="ticker-label">This week</div>
+        <div class="ticker-track">
+          <div class="ticker-run">
+            <span>Bekhruz News &middot; weekly edition</span><i></i>
+            <span>In this edition: world, economy, technology, culture</span><i></i>
+            <span>Public Speaking project</span><i></i>
+            <span>Bekhruz News &middot; weekly edition</span><i></i>
+            <span>In this edition: world, economy, technology, culture</span><i></i>
+            <span>Public Speaking project</span><i></i>
           </div>
         </div>
       </footer>
 
-      <!-- Presenter Control Bar -->
-      <nav class="presenter-bar" id="presenter-bar" aria-label="Presentation Controls">
-        <button id="ctrl-prev" class="ctrl-btn" type="button" title="Previous (←)">◀</button>
-        <span id="ctrl-indicator" class="ctrl-indicator">STANDBY</span>
-        <button id="ctrl-next" class="ctrl-btn" type="button" title="Next / Skip (→)">▶</button>
-        <div class="ctrl-divider"></div>
-        <button id="ctrl-grid" class="ctrl-btn" type="button" title="Slide Overview (G)">☰ Deck</button>
-        <button id="ctrl-replay" class="ctrl-btn" type="button" title="Replay Intro (R)">↺ Intro</button>
-        <button id="ctrl-bgm" class="ctrl-btn" type="button" title="Keep Ukulele Music in Slides (B)">🎵 Ukulele</button>
-        <button id="ctrl-mute" class="ctrl-btn" type="button" title="Mute / Unmute (M)">🔊</button>
-        <button id="ctrl-fullscreen" class="ctrl-btn" type="button" title="Fullscreen (F)">⛶</button>
+      <div id="wash" class="wash" aria-hidden="true"></div>
+      <div class="grain" aria-hidden="true"></div>
+
+      <!-- all slides (G) -->
+      <aside id="overview" class="overview" aria-hidden="true">
+        <div class="ov-head">
+          <h3>All slides</h3>
+          <button id="ov-close" class="ctrl" type="button">Close <kbd>Esc</kbd></button>
+        </div>
+        <div id="overview-grid" class="ov-grid"></div>
+      </aside>
+
+      <!-- presenter controls (appear when the mouse moves) -->
+      <nav id="controls" class="controls" aria-label="Presenter controls">
+        <button id="ctrl-prev" class="ctrl icon" type="button" aria-label="Previous">
+          <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" /></svg>
+        </button>
+        <span id="ctrl-indicator" class="ctrl-indicator">Ready</span>
+        <button id="ctrl-next" class="ctrl icon" type="button" aria-label="Next">
+          <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" /></svg>
+        </button>
+        <span class="ctrl-sep"></span>
+        <button id="ctrl-deck" class="ctrl" type="button">Slides</button>
+        <button id="ctrl-intro" class="ctrl" type="button">Opening</button>
+        <button id="ctrl-music" class="ctrl" type="button">Music</button>
+        <button id="ctrl-mute" class="ctrl icon" type="button" aria-label="Mute">
+          <svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z" /><path class="snd" d="M15.5 9a4 4 0 010 6M18 6.5a7.5 7.5 0 010 11" /></svg>
+        </button>
+        <button id="ctrl-full" class="ctrl icon" type="button" aria-label="Full screen">
+          <svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" /></svg>
+        </button>
       </nav>
     </main>
   </div>
 
-  <!-- User's Uploaded Hawaiian Ukulele Track -->
-  <audio id="intro-audio" src="assets/hawaiian-intro.mp3" preload="auto" loop></audio>
+  <audio id="music" src="assets/hawaiian-intro.mp3" preload="auto" loop></audio>
 
-  <!-- Local Three.js + Offline Base64 NASA Blue Marble Earth Textures -->
-  <script src="js/three.min.js"></script>
-  <script src="js/earth-textures.js"></script>
+  <script src="js/scene.js"></script>
   <script src="js/intro.js"></script>
-  <script src="js/engine.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

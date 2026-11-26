@@ -42,13 +42,20 @@
     });
   }
 
-  const PAN = [[b(12) - 0.25, -150], [b(15) - 0.25, 140], [b(18) - 0.25, -120], [b(21) - 0.25, 150]];
+  const PAN = [
+    [b(12) - 0.2, -150],
+    [b(13.83) - 0.2, 140],
+    [b(15.67) - 0.2, -120],
+    [b(17.5) - 0.2, 150],
+    [b(19.33) - 0.2, -135],
+    [b(21.17) - 0.2, 135]
+  ];
   function panAt(t) {
     let x = 0;
     for (let i = 0; i < PAN.length; i++) {
       const [tk, v] = PAN[i];
       const prev = i ? PAN[i - 1][1] : 0;
-      if (t >= tk) x = lerp(prev, v, easeInOut(win(t, tk, tk + 1.15)));
+      if (t >= tk) x = lerp(prev, v, easeInOut(win(t, tk, tk + 0.85)));
     }
     return x;
   }
@@ -238,18 +245,20 @@
       this.alohaSub.style.transform = `translateY(${((1 - subIn) * 60).toFixed(1)}%)`;
 
       // ---- sections of the edition ----
+      const topicCount = Math.max(1, this.topics.length);
+      const topicStep = 11 / topicCount;
       this.topics.forEach((tp, i) => {
-        const at = b(12 + 3 * i);
-        const end = i < 3 ? b(15 + 3 * i) - 0.3 : b(23) - 0.14;
-        const inn = easeOut(win(t, at, at + 0.6));
-        const out = easeIn(win(t, end, end + 0.28));
-        const active = t >= at && t < end + 0.3;
+        const at = b(12 + topicStep * i);
+        const end = i < topicCount - 1 ? b(12 + topicStep * (i + 1)) - 0.22 : b(23) - 0.14;
+        const inn = easeOut(win(t, at, at + 0.45));
+        const out = easeIn(win(t, end, end + 0.22));
+        const active = t >= at && t < end + 0.24;
         tp.el.style.visibility = active ? 'visible' : 'hidden';
         if (!active) return;
         tp.num.style.opacity = (inn * (1 - out)).toFixed(3);
         tp.num.style.transform = `translateY(${((1 - inn) * 40).toFixed(1)}%)`;
         tp.line.style.transform = `translateY(${((1 - inn) * 108 - out * 108).toFixed(2)}%)`;
-        tp.rule.style.transform = `scaleX(${(easeOut(win(t, at + 0.15, at + 0.8)) * (1 - out)).toFixed(3)})`;
+        tp.rule.style.transform = `scaleX(${(easeOut(win(t, at + 0.12, at + 0.6)) * (1 - out)).toFixed(3)})`;
       });
 
       // ---- leaves close in on the turnaround, burst open on the downbeat ----

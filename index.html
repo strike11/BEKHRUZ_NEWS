@@ -8,6 +8,7 @@
   <link rel="preload" href="assets/fonts/fraunces-italic-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/oswald-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/leaflet.css" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -61,12 +62,14 @@
           <p id="aloha-sub" class="aloha-sub">This week on Bekhruz News</p>
         </div>
 
-        <!-- the four sections shown in the opening; keep them in sync with the first slide -->
+        <!-- the six sections shown in the opening; kept in sync with the welcome rundown and slide deck -->
         <div id="topics" class="topics">
-          <div class="topic"><span class="topic-num">01 &mdash; 04</span><span class="topic-mask"><span class="topic-line">World</span></span><span class="topic-rule"></span></div>
-          <div class="topic"><span class="topic-num">02 &mdash; 04</span><span class="topic-mask"><span class="topic-line">Economy</span></span><span class="topic-rule"></span></div>
-          <div class="topic"><span class="topic-num">03 &mdash; 04</span><span class="topic-mask"><span class="topic-line">Technology</span></span><span class="topic-rule"></span></div>
-          <div class="topic"><span class="topic-num">04 &mdash; 04</span><span class="topic-mask"><span class="topic-line">Culture</span></span><span class="topic-rule"></span></div>
+          <div class="topic"><span class="topic-num">01 &mdash; 06</span><span class="topic-mask"><span class="topic-line">America Weather</span></span><span class="topic-rule"></span></div>
+          <div class="topic"><span class="topic-num">02 &mdash; 06</span><span class="topic-mask"><span class="topic-line">Sport &amp; Cybersport</span></span><span class="topic-rule"></span></div>
+          <div class="topic"><span class="topic-num">03 &mdash; 06</span><span class="topic-mask"><span class="topic-line">Economy Research</span></span><span class="topic-rule"></span></div>
+          <div class="topic"><span class="topic-num">04 &mdash; 06</span><span class="topic-mask"><span class="topic-line">World News</span></span><span class="topic-rule"></span></div>
+          <div class="topic"><span class="topic-num">05 &mdash; 06</span><span class="topic-mask"><span class="topic-line">Conspirology</span></span><span class="topic-rule"></span></div>
+          <div class="topic"><span class="topic-num">06 &mdash; 06</span><span class="topic-mask"><span class="topic-line">Final &amp; References</span></span><span class="topic-rule"></span></div>
         </div>
 
         <div id="leaves" class="leaves"></div>
@@ -85,20 +88,23 @@
       <!-- slides -->
       <div id="slides" class="slides">
 
-        <section class="slide" data-title="Welcome">
+        <!-- 00: Welcome & Edition Rundown List -->
+        <section class="slide" data-num="00" data-title="Welcome &amp; Rundown">
           <article class="card card-welcome">
             <div class="welcome-main">
               <p class="kicker r" style="--i:0">Weekly edition &middot; <span data-date="short"></span></p>
               <h2 class="headline r" style="--i:1">Aloha, and welcome to Bekhruz&nbsp;News</h2>
-              <p class="lead r" style="--i:2">Here is what happened this week, from the biggest world stories to the ideas changing how we live.</p>
+              <p class="lead r" style="--i:2">6 key stories &middot; Live maps, field video &amp; global analysis.</p>
             </div>
             <div class="welcome-rundown">
-              <p class="rundown-label r" style="--i:2">In this edition</p>
+              <p class="rundown-label r" style="--i:2">In this edition &middot; 6 segments</p>
               <ol class="rundown">
-                <li class="r" style="--i:3"><span class="rd-num">01</span><span class="rd-name">World</span></li>
-                <li class="r" style="--i:4"><span class="rd-num">02</span><span class="rd-name">Economy</span></li>
-                <li class="r" style="--i:5"><span class="rd-num">03</span><span class="rd-name">Technology</span></li>
-                <li class="r" style="--i:6"><span class="rd-num">04</span><span class="rd-name">Culture</span></li>
+                <li class="r" style="--i:3" data-goto="slide-weather-news"><span class="rd-num">01</span><span class="rd-name">America Weather News <small class="rd-sub">(News &middot; Map &middot; Live &middot; Tupanciret&atilde;)</small></span></li>
+                <li class="r" style="--i:4" data-goto="slide-sport"><span class="rd-num">02</span><span class="rd-name">Sport &amp; Cybersport News <small class="rd-sub">(Sports &middot; Gaming)</small></span></li>
+                <li class="r" style="--i:5" data-goto="slide-economy"><span class="rd-num">03</span><span class="rd-name">Economy Research</span></li>
+                <li class="r" style="--i:6" data-goto="slide-world"><span class="rd-num">04</span><span class="rd-name">World News</span></li>
+                <li class="r" style="--i:7" data-goto="slide-conspirology"><span class="rd-num">05</span><span class="rd-name">Conspirology News</span></li>
+                <li class="r" style="--i:8" data-goto="slide-final"><span class="rd-num">06</span><span class="rd-name">Final &amp; Reference List</span></li>
               </ol>
             </div>
             <div class="postmark" aria-hidden="true">
@@ -114,29 +120,790 @@
           </article>
         </section>
 
-        <!--
-          To add a news story, copy this block above the closing </div> of #slides,
-          remove the comment marks and change the text. Each slide gets a number automatically.
-
-        <section class="slide" data-title="World — headline">
+        <!-- 01A: America Weather News (North & South America Overview) -->
+        <section id="slide-weather-news" class="slide" data-num="01" data-title="America Weather — North &amp; South America">
           <article class="card card-story">
             <div class="story-text">
-              <p class="kicker r" style="--i:0">01 &middot; World</p>
-              <h2 class="headline r" style="--i:1">The headline of the story</h2>
-              <p class="lead r" style="--i:2">One or two sentences that explain what happened.</p>
-              <ul class="facts">
-                <li class="r" style="--i:3">First key fact</li>
-                <li class="r" style="--i:4">Second key fact</li>
-                <li class="r" style="--i:5">Why it matters</li>
+              <div class="kicker-row r" style="--i:0">
+                <p class="kicker">01 &middot; America Weather News</p>
+              </div>
+              <h2 class="headline r" style="--i:1">Extreme Storms Hit North &amp; South&nbsp;America</h2>
+              <ul class="facts facts-statements">
+                <li class="r" style="--i:2"><strong>North America:</strong> Storm alerts across 14 U.S. states &amp; +10&deg;F Southwest heat dome.</li>
+                <li class="r" style="--i:3"><strong>South America:</strong> 114&nbsp;km/h tornado strikes Tupanciret&atilde;, Southern Brazil.</li>
+                <li class="r" style="--i:4"><strong>Impact:</strong> Thousands of homes damaged, trees uprooted &amp; streets without power.</li>
               </ul>
             </div>
-            <figure class="story-photo r" style="--i:2">
-              <img src="assets/your-photo.jpg" alt="" />
-              <figcaption>Photo caption</figcaption>
-            </figure>
+            <aside class="story-visual r" style="--i:2">
+              <div class="visual-box">
+                <figure class="weather-preview-photo">
+                  <img src="assets/refs/brazil-france24.jpg" alt="Storm-torn street in Tupanciretã, Brazil under a tornado" />
+                  <span class="wp-badge">Tupanciret&atilde;, Brazil &middot; 114 km/h</span>
+                </figure>
+                <div class="vb-grid">
+                  <div class="vb-stat">
+                    <span class="vb-stat-label">North America</span>
+                    <span class="vb-stat-val">14 U.S. States</span>
+                  </div>
+                  <div class="vb-stat">
+                    <span class="vb-stat-label">Brazil Gusts</span>
+                    <span class="vb-stat-val">114 km/h</span>
+                  </div>
+                </div>
+              </div>
+            </aside>
           </article>
         </section>
-        -->
+
+        <!-- 01B: America Weather — Live Satellite Map Webview -->
+        <section id="slide-weather-map" class="slide" data-num="01·MAP" data-title="America Weather — Zoom Earth Satellite Map">
+          <article class="card card-webview">
+            <div class="webview-top r" style="--i:0">
+              <div class="wv-title-group">
+                <p class="kicker">01 &middot; America Weather &middot; Live Map</p>
+                <h2 class="wv-headline">Satellite &amp; Wind Radar &mdash; Americas</h2>
+              </div>
+              <div class="wv-controls">
+                <button class="wv-btn is-active" type="button" data-map-fly="5,-68,3" data-map-label="https://zoom.earth/maps/satellite/#view=5,-68,3z">Americas Satellite</button>
+                <button class="wv-btn" type="button" data-map-fly="-29.08,-53.84,6" data-map-pin="brazil" data-map-label="https://zoom.earth/maps/satellite/#view=-29.08,-53.84,6z">Brazil StormZone</button>
+                <button class="wv-btn" type="button" data-map-fly="37.5,-96.5,4" data-map-pin="usa" data-map-label="https://zoom.earth/maps/satellite/#view=37.5,-96.5,4z">North America</button>
+                <button id="wv-toggle-clouds" class="wv-btn is-active" type="button" title="Toggle GOES-East Live Satellite Clouds">Live Clouds</button>
+                <button id="wv-popup-ze" class="wv-btn wv-btn-ext" type="button">Zoom.Earth Window &#8599;</button>
+              </div>
+            </div>
+            <div class="webview-frame-wrap r" style="--i:1">
+              <div class="webview-url-bar">
+                <span class="wv-dots"><i></i><i></i><i></i></span>
+                <span class="wv-lock">LIVE SATELLITE</span>
+                <span id="wv-url-display" class="wv-url">https://zoom.earth/maps/satellite/#view=5,-68,3z</span>
+                <span class="wv-telemetry">GOES-East GeoColor &bull; Live Radar</span>
+              </div>
+              <div id="satellite-map" class="webview-iframe ze-native-map" aria-label="Interactive Americas Live Satellite Map">
+                <!-- Zoom Earth style HUD overlay inside map -->
+                <div class="ze-hud-badge">
+                  <span class="ze-live-dot"></span>
+                  <span>CLICK ANY POINT FOR WIND, TEMPERATURE &amp; TREND</span>
+                </div>
+
+                <aside id="ze-cheatsheet" class="ze-cheatsheet is-open" aria-live="polite">
+                  <div class="zec-head">
+                    <span id="zec-place" class="zec-place">Tupanciretã, Rio Grande do Sul, Brazil</span>
+                    <button id="zec-close" class="zec-close" type="button" title="Close">&times;</button>
+                  </div>
+                  <div class="zec-grid">
+                    <div class="zec-row">
+                      <span class="zec-lbl">Wind</span>
+                      <span id="zec-wind" class="zec-val">114 km/h (71 mph) · tornado, NW gusts</span>
+                    </div>
+                    <div class="zec-row">
+                      <span class="zec-lbl">Temperature</span>
+                      <span id="zec-temp" class="zec-val">19°C (66°F)</span>
+                    </div>
+                    <div class="zec-row">
+                      <span class="zec-lbl">Trend</span>
+                      <span id="zec-trend" class="zec-val zec-trend-cool">Cooling −7°C · cold front</span>
+                    </div>
+                  </div>
+                  <p id="zec-note" class="zec-note">"A tornado with 114 km/h winds hit Tupanciretã in southern Brazil, and temperatures dropped 7 degrees as a cold front moved in."</p>
+                </aside>
+
+                <div class="ze-legend">
+                  <span>PRECIPITATION / RADAR</span>
+                  <div class="ze-legend-bar"></div>
+                  <span>SEVERE</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <!-- 01C: America Weather — Playable Video from Brazil (Maria Fernanda Live Stream Overlay) -->
+        <section id="slide-weather-video" class="slide" data-num="01·LIVE" data-title="America Weather — Brazil Live Stream (Maria Fernanda)">
+          <article class="card card-livestream">
+            <div class="stream-stage r" style="--i:0">
+              <video
+                id="brazil-video"
+                class="stream-video"
+                src="assets/maria-fernanda.mp4"
+                poster="assets/refs/brazil-france24.jpg"
+                preload="metadata"
+                playsinline
+              ></video>
+
+              <!-- Top Broadcast Live Stream Overlay HUD -->
+              <div class="stream-overlay-top">
+                <div class="stream-badges-left">
+                  <span class="stream-live-pill"><i class="stream-rec-dot"></i> AO VIVO &middot; LIVE</span>
+                  <span class="stream-loc-pill">TUPANCIRET&Atilde;, BRAZIL</span>
+                  <span class="stream-wind-pill">114 KM/H</span>
+                </div>
+                <div class="stream-badges-right">
+                  <span class="stream-net-tag">TV GLOBO &times; BEKHRUZ NEWS</span>
+                  <span id="stream-timecode" class="stream-tc">00:00 / 00:45</span>
+                </div>
+              </div>
+
+              <!-- Center Big Play Button Overlay -->
+              <button id="stream-big-play" class="stream-big-play" type="button" aria-label="Play Brazil Live Stream">
+                <span class="sbp-ring">
+                  <svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" /></svg>
+                </span>
+                <span class="sbp-label">Watch live report &middot; Maria Fernanda</span>
+              </button>
+
+              <!-- Lower-Third Broadcast Chyron Overlay -->
+              <div class="stream-overlay-bottom">
+                <div class="stream-chyron">
+                  <div class="chyron-top-row">
+                    <span class="chyron-breaking">BREAKING WEATHER</span>
+                    <span class="chyron-correspondent">MARIA FERNANDA &middot; LIVE</span>
+                  </div>
+                  <div class="chyron-main-row">
+                    <h3 class="chyron-headline">114 KM/H STORM STRIKES TUPANCIRET&Atilde;, BRAZIL</h3>
+                  </div>
+                </div>
+
+                <!-- Interactive Video Player Bar -->
+                <div class="stream-controls">
+                  <button id="stream-btn-play" class="sctrl-btn" type="button">Play</button>
+                  <button id="stream-btn-restart" class="sctrl-btn" type="button" title="Restart Video">&#8634;</button>
+                  <div id="stream-progress-wrap" class="stream-progress-wrap" title="Seek video">
+                    <div id="stream-progress-bar" class="stream-progress-bar"></div>
+                  </div>
+                  <button id="stream-btn-mute" class="sctrl-btn" type="button">Sound On</button>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <!-- 01D: Signal lost with the correspondent -->
+        <section id="slide-signal-lost" class="slide" data-num="01·LOST" data-title="Connection Lost — Maria Fernanda">
+          <article class="card card-nosignal">
+            <div class="ns-bars" aria-hidden="true">
+              <i style="background:#c0c0c0"></i><i style="background:#c0c000"></i><i style="background:#00c0c0"></i><i style="background:#00c000"></i><i style="background:#c000c0"></i><i style="background:#c00000"></i><i style="background:#0000c0"></i>
+            </div>
+            <div class="ns-static" aria-hidden="true"></div>
+            <div class="ns-center">
+              <p class="ns-badge r" style="--i:0"><i class="stream-rec-dot"></i> NO SIGNAL</p>
+              <h2 class="ns-title r" style="--i:1">Connection with our correspondent lost</h2>
+              <p class="ns-sub r" style="--i:2">Maria Fernanda &middot; Tupanciretã, Brazil</p>
+            </div>
+          </article>
+        </section>
+
+        <!-- 01E: Tupanciretã, read after Maria Fernanda's feed cuts -->
+        <section id="slide-tupancireta" class="slide" data-num="01·NEWS" data-title="Tupanciretã — After the Live Feed">
+          <article class="card card-story">
+            <div class="story-text">
+              <div class="kicker-row r" style="--i:0">
+                <p class="kicker">01 &middot; America Weather &middot; After the feed</p>
+              </div>
+              <h2 class="headline r" style="--i:1">Tornado Hits Tupanciret&atilde;</h2>
+              <ul class="facts facts-statements">
+                <li class="r" style="--i:2"><strong>The strike:</strong> 114 km/h tornado in Tupanciret&atilde;, Rio Grande do Sul, as Maria Fernanda's live link failed.</li>
+                <li class="r" style="--i:3"><strong>The damage:</strong> Homes hit, trees down, streets without power.</li>
+                <li class="r" style="--i:4"><strong>The front:</strong> Temperatures fell 7&deg;C behind the storm.</li>
+              </ul>
+            </div>
+            <aside class="story-visual r" style="--i:2">
+              <div class="visual-box">
+                <figure class="weather-preview-photo">
+                  <img src="assets/refs/brazil-france24.jpg" alt="Storm damage on a street in Tupanciretã, Brazil" />
+                  <span class="wp-badge">Tupanciret&atilde; &middot; link lost</span>
+                </figure>
+                <div class="vb-grid">
+                  <div class="vb-stat">
+                    <span class="vb-stat-label">Wind</span>
+                    <span class="vb-stat-val">114 km/h</span>
+                  </div>
+                  <div class="vb-stat">
+                    <span class="vb-stat-label">Correspondent</span>
+                    <span class="vb-stat-val">Feed lost</span>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </article>
+        </section>
+
+        <!-- 02A: Global Sports News -->
+        <section id="slide-sport" class="slide" data-num="02·SPORT" data-title="Global Sports News">
+          <article class="card card-media-dense">
+            <header class="media-header">
+              <div class="kicker-row r" style="--i:0">
+                <p class="kicker">02 &middot; Global Sports News &middot; Nov 23&ndash;26, 2026</p>
+              </div>
+              <h2 class="headline r" style="--i:1">Global Sports News This Week</h2>
+            </header>
+
+            <div class="media-grid media-grid-4">
+              <div class="media-card r" style="--i:2" tabindex="0" role="button"
+                data-tag="Formula 1 &middot; Round 22"
+                data-title="Qatar Grand Prix &mdash; Lusail"
+                data-s1="Round 22 at Lusail International Circuit (Nov 27–29) features a 5.4 km track and 57 night laps."
+                data-s2="Crucial late-season showdown under the floodlights as the 2026 championship nears its final stages.">
+                <div class="mc-img-wrap">
+                  <img src="assets/refs/qatar-real.jpg" alt="Qatar Grand Prix podium, from the Formula 1 article" class="mc-img" />
+                  <span class="mc-tag">F1 &middot; Round 22</span>
+                </div>
+                <div class="mc-body">
+                  <h3 class="mc-title">Qatar GP &middot; Lusail</h3>
+                </div>
+              </div>
+
+              <div class="media-card r" style="--i:3" tabindex="0" role="button"
+                data-tag="Tennis &middot; Bologna, Italy"
+                data-title="Davis Cup Final 8"
+                data-s1="Eight national teams compete in Bologna (Nov 24–29), with Great Britain vs. Germany and Austria vs. Spain."
+                data-s2="Czech Republic defeated Canada 2–0 and Italy beat South Korea 2–1 to advance to the semi-finals.">
+                <div class="mc-img-wrap">
+                  <img src="assets/davis-cup.png" alt="Davis Cup Final 8" class="mc-img" />
+                  <span class="mc-tag">Bologna, Italy</span>
+                </div>
+                <div class="mc-body">
+                  <h3 class="mc-title">Davis Cup Final 8</h3>
+                </div>
+              </div>
+
+              <div class="media-card r" style="--i:4" tabindex="0" role="button"
+                data-tag="Basketball &middot; NBA &times; FIBA"
+                data-title="NBA &euro;10B European Arenas"
+                data-s1="The NBA announced a €10 billion plan on Nov 25 to develop and renovate basketball arenas across Europe."
+                data-s2="Builds a new professional European basketball ecosystem in partnership with FIBA starting in 2027.">
+                <div class="mc-img-wrap mc-img-dark">
+                  <img src="assets/nba-logo.svg" alt="NBA Logo" class="mc-img mc-img-contain" />
+                  <span class="mc-tag">NBA &times; FIBA</span>
+                </div>
+                <div class="mc-body">
+                  <h3 class="mc-title">&euro;10B Europe Arenas</h3>
+                </div>
+              </div>
+
+              <div class="media-card r" style="--i:5" tabindex="0" role="button"
+                data-tag="Chess &middot; Geneva 2026"
+                data-title="Sindarov vs. Gukesh &mdash; World Title"
+                data-s1="Uzbek GM Javokhir Sindarov faces reigning world champion Gukesh Dommaraju at the 2026 World Championship."
+                data-s2="The match stands tied 1–1 after two draws, including a sharp 20-move battle in Game 2.">
+                <div class="mc-img-wrap">
+                  <img src="assets/refs/sindarov-article.jpg" alt="Sindarov and Gukesh at the 2026 World Championship, UZA" class="mc-img" />
+                  <span class="mc-tag">Geneva 2026</span>
+                </div>
+                <div class="mc-body">
+                  <h3 class="mc-title">Sindarov 1&ndash;1 Gukesh</h3>
+                </div>
+              </div>
+            </div>
+
+            <!-- Morph Expanded Panel -->
+            <div class="tile-morph-overlay" aria-hidden="true">
+              <div class="tile-morph-card">
+                <div class="tm-visual"></div>
+                <div class="tm-content">
+                  <div class="tm-top">
+                    <span class="tm-tag"></span>
+                    <button class="tm-close" type="button" aria-label="Close">&times; Close</button>
+                  </div>
+                  <h3 class="tm-title"></h3>
+                  <ul class="tm-statements">
+                    <li class="tm-s1"></li>
+                    <li class="tm-s2"></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <!-- 02B: Cybersport & Weekly Gaming News -->
+        <section id="slide-cybersport" class="slide" data-num="02·CYBER" data-title="Cybersport &amp; Gaming News">
+          <article class="card card-media-dense">
+            <header class="media-header">
+              <div class="kicker-row r" style="--i:0">
+                <p class="kicker">02 &middot; Cybersport &amp; Gaming News</p>
+              </div>
+              <h2 class="headline r" style="--i:1">Weekly Gaming &amp; Cybersport News</h2>
+            </header>
+
+            <div class="media-grid media-grid-6">
+              <div class="media-card r" style="--i:2" tabindex="0" role="button"
+                data-tag="Rockstar Games"
+                data-title="Grand Theft Auto VI Launch"
+                data-s1="Generated $3.79 billion in first-day retail sales alongside 32.5 million pre-release sales after a 13-year wait."
+                data-s2="Outpaced GTA V’s $1 billion three-day launch in 2013 by nearly fourfold.">
+                <div class="mc-img-wrap mc-img-dark">
+                  <img src="assets/refs/gta6-real.jpg" alt="Grand Theft Auto VI key art, from the Warp Pipes digest" class="mc-img" />
+                  <span class="mc-tag">Rockstar</span>
+                </div>
+                <div class="mc-body">
+                  <h3 class="mc-title">GTA VI: $3.79B</h3>
+                </div>
+              </div>
+
+              <div class="media-card r" style="--i:3" tabindex="0" role="button"
+                data-tag="CS2 &middot; PGL Major Singapore"
+                data-title="Chinggis Warriors 2&ndash;1 BC.Game"
+                data-s1="Mongolia’s Chinggis Warriors defeated BC.Game 2–1 at the PGL Major Singapore 2026."
+                data-s2="Eliminated BC.Game and star player s1mple from the Major with a 0–3 record.">
+                <div class="mc-img-wrap mc-img-dark">
+                  <img src="assets/refs/chinggis-real.jpg" alt="PGL Major Singapore, from the HLTV match report" class="mc-img" />
+                  <span class="mc-tag">PGL Major</span>
+                </div>
+                <div class="mc-body">
+                  <h3 class="mc-title">Chinggis 2&ndash;1 BC</h3>
+                </div>
+              </div>
+
+              <div class="media-card r" style="--i:4" tabindex="0" role="button"
+                data-tag="CS2 &middot; FaZe Clan Stats"
+                data-title="FaZe Clan Player Ratings"
+                data-s1="frozen led FaZe Clan as the roster’s strongest performer with a dominant 1.26 rating."
+                data-s2="Twistzz followed as FaZe Clan’s second highest-rated player at 1.05.">
+                <div class="mc-img-wrap mc-img-dark">
+                  <img src="assets/faze.png" alt="FaZe Clan" class="mc-img mc-img-contain" />
+                  <span class="mc-tag">FaZe Clan</span>
+                </div>
+                <div class="mc-body">
+                  <h3 class="mc-title">frozen 1.26</h3>
+                </div>
+              </div>
+
+              <div class="media-card r" style="--i:5" tabindex="0" role="button"
+                data-tag="Activision &middot; U.S. Charts"
+                data-title="Call of Duty: Modern Warfare 4"
+                data-s1="Ranked #1 best-selling game in the United States for October 2026."
+                data-s2="Extends Call of Duty’s streak to 19 consecutive years topping launch-month sales charts.">
+                <div class="mc-img-wrap mc-img-dark">
+                  <img src="assets/cod-mw.png" alt="Call of Duty MW4" class="mc-img mc-img-contain" />
+                  <span class="mc-tag">Activision</span>
+                </div>
+                <div class="mc-body">
+                  <h3 class="mc-title">CoD MW4 #1</h3>
+                </div>
+              </div>
+
+              <div class="media-card r" style="--i:6" tabindex="0" role="button"
+                data-tag="Malta &middot; Jan 14&ndash;24, 2027"
+                data-title="BLAST Bounty Malta 2027"
+                data-s1="16 invited teams including NAVI, FaZe, Team Liquid, HEROIC, and 100 Thieves."
+                data-s2="Takes place January 14–24, 2027 in Malta with a $1.25 million total prize pool.">
+                <div class="mc-img-wrap">
+                  <img src="assets/refs/blast-banner.png" alt="BLAST Bounty 2027 banner, from HLTV" class="mc-img" />
+                  <span class="mc-tag">Malta</span>
+                </div>
+                <div class="mc-body">
+                  <h3 class="mc-title">BLAST Bounty</h3>
+                </div>
+              </div>
+
+              <div class="media-card r" style="--i:7" tabindex="0" role="button"
+                data-tag="Ubisoft &middot; AI Subsidiary"
+                data-title="Ubisoft Motherbrain AI"
+                data-s1="Ubisoft cut 166 roles across Montreal and Quebec City while launching its Motherbrain AI unit."
+                data-s2="Develops smarter NPCs that remember past interactions inside dynamic game worlds.">
+                <div class="mc-img-wrap mc-img-ai">
+                  <div class="mc-custom-badge">
+                    <span class="mcb-text">MOTHERBRAIN</span>
+                  </div>
+                  <span class="mc-tag">Ubisoft AI</span>
+                </div>
+                <div class="mc-body">
+                  <h3 class="mc-title">Motherbrain AI</h3>
+                </div>
+              </div>
+            </div>
+
+            <!-- Morph Expanded Panel -->
+            <div class="tile-morph-overlay" aria-hidden="true">
+              <div class="tile-morph-card">
+                <div class="tm-visual"></div>
+                <div class="tm-content">
+                  <div class="tm-top">
+                    <span class="tm-tag"></span>
+                    <button class="tm-close" type="button" aria-label="Close">&times; Close</button>
+                  </div>
+                  <h3 class="tm-title"></h3>
+                  <ul class="tm-statements">
+                    <li class="tm-s1"></li>
+                    <li class="tm-s2"></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <!-- 03: Economy Research — How Do Students Manage Their Money? -->
+        <section id="slide-economy" class="slide" data-num="03" data-title="Economy Research — Student Money Survey">
+          <article class="card card-media-dense card-econ-survey">
+            <header class="media-header econ-header">
+              <div class="kicker-row r" style="--i:0">
+                <p class="kicker">03 &middot; Economy Research &middot; Survey (N = 25 University Students)</p>
+                <div class="econ-actions">
+                  <button id="btn-open-excel" class="econ-excel-btn" type="button">View Excel Data</button>
+                  <a class="econ-excel-link" href="assets/AUT_Money_and_Financial_Choices_Survey_Data.xlsx" download="AUT_Money_and_Financial_Choices_Survey_Data.xlsx">Excel File (.xlsx)</a>
+                </div>
+              </div>
+              <h2 class="headline r" style="--i:1">How Do Students Manage Their Money?</h2>
+            </header>
+
+            <!-- 4 Interactive Survey Graphs (Click any graph to morph & expand) -->
+            <div class="media-grid econ-graph-grid">
+
+              <!-- Graph 1: Main Source of Students' Money -->
+              <div class="media-card econ-gcard r" style="--i:2" tabindex="0" role="button"
+                data-tag="Graph 1 &middot; Income Sources (N = 25)"
+                data-title="Main Source of Students&rsquo; Money"
+                data-s1="48% of surveyed students receive most of their money from family support, while 36% earn their own money through work."
+                data-s2="Another 12% rely on a combination of sources and 4% report other funding.">
+                <div class="mc-img-wrap econ-chart-wrap">
+                  <div class="eg-head">
+                    <span class="eg-num">GRAPH 01</span>
+                    <span class="eg-sub">Where Money Comes From</span>
+                  </div>
+                  <div class="eg-bars">
+                    <div class="eg-bar-row">
+                      <span class="eg-lbl">Family Support</span>
+                      <div class="eg-track"><span class="eg-fill eg-fill-coral" style="width:48%"></span></div>
+                      <span class="eg-val">48%</span>
+                    </div>
+                    <div class="eg-bar-row">
+                      <span class="eg-lbl">Work Earnings</span>
+                      <div class="eg-track"><span class="eg-fill eg-fill-gold" style="width:36%"></span></div>
+                      <span class="eg-val">36%</span>
+                    </div>
+                    <div class="eg-bar-row">
+                      <span class="eg-lbl">Combined Sources</span>
+                      <div class="eg-track"><span class="eg-fill eg-fill-teal" style="width:12%"></span></div>
+                      <span class="eg-val">12%</span>
+                    </div>
+                    <div class="eg-bar-row">
+                      <span class="eg-lbl">Other</span>
+                      <div class="eg-track"><span class="eg-fill eg-fill-muted" style="width:4%"></span></div>
+                      <span class="eg-val">4%</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mc-body">
+                  <h3 class="mc-title">1. Main Source of Money</h3>
+                </div>
+              </div>
+
+              <!-- Graph 2: Main Spending Categories -->
+              <div class="media-card econ-gcard r" style="--i:3" tabindex="0" role="button"
+                data-tag="Graph 2 &middot; Monthly Expenses"
+                data-title="Main Spending Categories"
+                data-s1="Food and drinks lead all student expenses at 64%, followed by shopping and entertainment at 48%."
+                data-s2="Transport and study-related education costs were both selected by 28% of students.">
+                <div class="mc-img-wrap econ-chart-wrap">
+                  <div class="eg-head">
+                    <span class="eg-num">GRAPH 02</span>
+                    <span class="eg-sub">Where the Money Goes</span>
+                  </div>
+                  <div class="eg-bars">
+                    <div class="eg-bar-row">
+                      <span class="eg-lbl">Food &amp; Drinks</span>
+                      <div class="eg-track"><span class="eg-fill eg-fill-coral" style="width:64%"></span></div>
+                      <span class="eg-val">64%</span>
+                    </div>
+                    <div class="eg-bar-row">
+                      <span class="eg-lbl">Shopping &amp; Fun</span>
+                      <div class="eg-track"><span class="eg-fill eg-fill-gold" style="width:48%"></span></div>
+                      <span class="eg-val">48%</span>
+                    </div>
+                    <div class="eg-bar-row">
+                      <span class="eg-lbl">Transport</span>
+                      <div class="eg-track"><span class="eg-fill eg-fill-teal" style="width:28%"></span></div>
+                      <span class="eg-val">28%</span>
+                    </div>
+                    <div class="eg-bar-row">
+                      <span class="eg-lbl">Education</span>
+                      <div class="eg-track"><span class="eg-fill eg-fill-teal" style="width:28%"></span></div>
+                      <span class="eg-val">28%</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mc-body">
+                  <h3 class="mc-title">2. Main Spending Categories</h3>
+                </div>
+              </div>
+
+              <!-- Graph 3: Budget Habits -->
+              <div class="media-card econ-gcard r" style="--i:4" tabindex="0" role="button"
+                data-tag="Graph 3 &middot; Financial Control"
+                data-title="Student Budget Habits"
+                data-s1="68% of students always (36%) or often (32%) plan how to use their money before spending it."
+                data-s2="80% regularly check how much money they have left (52% always, 28% often).">
+                <div class="mc-img-wrap econ-chart-wrap">
+                  <div class="eg-head">
+                    <span class="eg-num">GRAPH 03</span>
+                    <span class="eg-sub">Active Budget Control</span>
+                  </div>
+                  <div class="eg-gauges">
+                    <div class="eg-gauge">
+                      <svg viewBox="0 0 100 100" class="eg-ring-svg">
+                        <circle cx="50" cy="50" r="38" class="eg-ring-bg" />
+                        <circle cx="50" cy="50" r="38" class="eg-ring-fg eg-ring-coral" stroke-dasharray="162.4 238.8" />
+                        <text x="50" y="55" text-anchor="middle" class="eg-ring-txt">68%</text>
+                      </svg>
+                      <span class="eg-gauge-lbl">Plan Spending<br><small>Always / Often</small></span>
+                    </div>
+                    <div class="eg-gauge">
+                      <svg viewBox="0 0 100 100" class="eg-ring-svg">
+                        <circle cx="50" cy="50" r="38" class="eg-ring-bg" />
+                        <circle cx="50" cy="50" r="38" class="eg-ring-fg eg-ring-gold" stroke-dasharray="191.0 238.8" />
+                        <text x="50" y="55" text-anchor="middle" class="eg-ring-txt">80%</text>
+                      </svg>
+                      <span class="eg-gauge-lbl">Check Balance<br><small>Always / Often</small></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mc-body">
+                  <h3 class="mc-title">3. Budget Habits</h3>
+                </div>
+              </div>
+
+              <!-- Graph 4: Saving Habits & Barriers -->
+              <div class="media-card econ-gcard r" style="--i:5" tabindex="0" role="button"
+                data-tag="Graph 4 &middot; Savings &amp; Barriers"
+                data-title="Saving Habits &amp; Top Barriers"
+                data-s1="84% of students save money in different ways, yet only 24% set money aside immediately upon receiving it."
+                data-s2="Top barriers: unplanned purchases (28%), unexpected expenses (20%), and high necessary expenses (16%).">
+                <div class="mc-img-wrap econ-chart-wrap">
+                  <div class="eg-head">
+                    <span class="eg-num">GRAPH 04</span>
+                    <span class="eg-sub">84% Save &middot; Only 24% Pay First</span>
+                  </div>
+                  <div class="eg-bars">
+                    <div class="eg-bar-row">
+                      <span class="eg-lbl">Save Overall</span>
+                      <div class="eg-track"><span class="eg-fill eg-fill-gold" style="width:84%"></span></div>
+                      <span class="eg-val">84%</span>
+                    </div>
+                    <div class="eg-bar-row">
+                      <span class="eg-lbl">Save Immediately</span>
+                      <div class="eg-track"><span class="eg-fill eg-fill-teal" style="width:24%"></span></div>
+                      <span class="eg-val">24%</span>
+                    </div>
+                    <div class="eg-bar-row">
+                      <span class="eg-lbl">Unplanned Buys</span>
+                      <div class="eg-track"><span class="eg-fill eg-fill-coral" style="width:28%"></span></div>
+                      <span class="eg-val">28%</span>
+                    </div>
+                    <div class="eg-bar-row">
+                      <span class="eg-lbl">Unexpected Costs</span>
+                      <div class="eg-track"><span class="eg-fill eg-fill-coral" style="width:20%"></span></div>
+                      <span class="eg-val">20%</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mc-body">
+                  <h3 class="mc-title">4. Saving Habits &amp; Barriers</h3>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Morph Expanded Panel for Graphs -->
+            <div class="tile-morph-overlay" aria-hidden="true">
+              <div class="tile-morph-card">
+                <div class="tm-visual"></div>
+                <div class="tm-content">
+                  <div class="tm-top">
+                    <span class="tm-tag"></span>
+                    <button class="tm-close" type="button" aria-label="Close">&times; Close</button>
+                  </div>
+                  <h3 class="tm-title"></h3>
+                  <ul class="tm-statements">
+                    <li class="tm-s1"></li>
+                    <li class="tm-s2"></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interactive Attached Excel Data Drawer -->
+            <div id="excel-modal" class="excel-modal" aria-hidden="true">
+              <div class="excel-sheet">
+                <div class="excel-top">
+                  <div class="excel-title-wrap">
+                    <span class="excel-badge">XLSX</span>
+                    <div>
+                      <h3 class="excel-name">AUT_Money_and_Financial_Choices_Survey_Data.xlsx</h3>
+                      <p class="excel-meta">25 Valid Student Responses &bull; 3 Screening Exclusions &bull; Populated Codebook &amp; Summary</p>
+                    </div>
+                  </div>
+                  <div class="excel-btns">
+                    <a class="econ-excel-link" href="assets/AUT_Money_and_Financial_Choices_Survey_Data.xlsx" download="AUT_Money_and_Financial_Choices_Survey_Data.xlsx">Download .xlsx</a>
+                    <button id="btn-close-excel" class="tm-close" type="button">&times; Close</button>
+                  </div>
+                </div>
+                <div class="excel-table-wrap">
+                  <table class="excel-table">
+                    <thead>
+                      <tr>
+                        <th>Code</th>
+                        <th>Survey Question</th>
+                        <th>Top Response Category</th>
+                        <th>Count</th>
+                        <th>Valid N</th>
+                        <th>% of Valid</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Q01</td><td>Main source of personal money</td><td>Family support</td><td>12</td><td>25</td><td><strong>48.0%</strong></td></tr>
+                      <tr><td>Q01</td><td>Main source of personal money</td><td>Earnings from work</td><td>9</td><td>25</td><td><strong>36.0%</strong></td></tr>
+                      <tr><td>Q01</td><td>Main source of personal money</td><td>A combination of sources</td><td>3</td><td>25</td><td><strong>12.0%</strong></td></tr>
+                      <tr><td>Q02</td><td>First priority when receiving money</td><td>Put some money into savings</td><td>11</td><td>25</td><td><strong>44.0%</strong></td></tr>
+                      <tr><td>Q02</td><td>First priority when receiving money</td><td>Pay for everyday necessities</td><td>7</td><td>25</td><td><strong>28.0%</strong></td></tr>
+                      <tr><td>Q03</td><td>Largest monthly spending categories</td><td>Food and drinks</td><td>16</td><td>25</td><td><strong>64.0%</strong></td></tr>
+                      <tr><td>Q03</td><td>Largest monthly spending categories</td><td>Shopping and entertainment</td><td>12</td><td>25</td><td><strong>48.0%</strong></td></tr>
+                      <tr><td>Q03</td><td>Largest monthly spending categories</td><td>Transport / Study-related expenses</td><td>7 each</td><td>25</td><td><strong>28.0%</strong></td></tr>
+                      <tr><td>Q04</td><td>Plan money before spending (Always + Often)</td><td>Always (9) + Often (8)</td><td>17</td><td>25</td><td><strong>68.0%</strong></td></tr>
+                      <tr><td>Q05</td><td>Check remaining balance (Always + Often)</td><td>Always (13) + Often (7)</td><td>20</td><td>25</td><td><strong>80.0%</strong></td></tr>
+                      <tr><td>Q07</td><td>How students usually save money</td><td>Save in different ways (Goal 44% / Immediate 24% / Leftover 16%)</td><td>21</td><td>25</td><td><strong>84.0%</strong></td></tr>
+                      <tr><td>Q09</td><td>Biggest difficulty when trying to save</td><td>Unplanned purchases (28%) &bull; Unexpected (20%) &bull; Necessary (16%)</td><td>16</td><td>25</td><td><strong>64.0%</strong></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <!-- 04: World News -->
+        <section id="slide-world" class="slide" data-num="04" data-title="World News">
+          <article class="card card-media-dense">
+            <header class="media-header">
+              <div class="kicker-row r" style="--i:0">
+                <p class="kicker">04 &middot; World News</p>
+              </div>
+              <h2 class="headline r" style="--i:1">World News This Week</h2>
+            </header>
+
+            <div class="media-grid media-grid-3">
+              <div class="media-card r" style="--i:2" tabindex="0" role="button"
+                data-tag="NVIDIA &middot; November 2026"
+                data-title="Jensen Huang Returns as CEO"
+                data-s1="Reports said he cheated on his wife with Alice Huang and with Kimberly Powell, NVIDIA’s VP of Healthcare. He apologized on November 8, then resigned on November 12."
+                data-s2="Eleven days later, on November 23, NVIDIA brought him back. He told staff: Thank you for the second chance. Never a bad CEO. Just a bad husband.">
+                <div class="mc-img-wrap">
+                  <img src="assets/refs/huang-real.jpg" alt="Jensen Huang, from the Gulf News report" class="mc-img" />
+                  <span class="mc-tag">Nov 23</span>
+                </div>
+                <div class="mc-body">
+                  <h3 class="mc-title">Huang Back at NVIDIA</h3>
+                </div>
+              </div>
+
+              <div class="media-card r" style="--i:3" tabindex="0" role="button"
+                data-tag="Politics &middot; Minsk / Kyiv"
+                data-title="Lukashenko’s Plane Offer"
+                data-s1="Lukashenko offered to fly with Zelensky to Moscow, meet Putin, and personally guarantee Zelensky’s safety on the way."
+                data-s2="Zelensky answered: What am I to him, a suitcase? Why would I go there?">
+                <div class="mc-img-wrap">
+                  <img src="assets/refs/meduza-card.png" alt="Meduza headline on Lukashenko's offer to Zelensky" class="mc-img mc-img-contain" />
+                  <span class="mc-tag">Moscow</span>
+                </div>
+                <div class="mc-body">
+                  <h3 class="mc-title">Fly With Me to Moscow</h3>
+                </div>
+              </div>
+
+              <div class="media-card r" style="--i:4" tabindex="0" role="button"
+                data-tag="Cinema"
+                data-title="A Secret Agent’s New Face"
+                data-s1="One of cinema’s most famous secret agents finally has a new face."
+                data-s2="That face is Robert Pattinson.">
+                <div class="mc-img-wrap">
+                  <img src="assets/refs/pattinson-real.jpg" alt="Robert Pattinson as James Bond, The Guardian" class="mc-img" />
+                  <span class="mc-tag">Cinema</span>
+                </div>
+                <div class="mc-body">
+                  <h3 class="mc-title">Robert Pattinson</h3>
+                </div>
+              </div>
+            </div>
+
+            <div class="tile-morph-overlay" aria-hidden="true">
+              <div class="tile-morph-card">
+                <div class="tm-visual"></div>
+                <div class="tm-content">
+                  <div class="tm-top">
+                    <span class="tm-tag"></span>
+                    <button class="tm-close" type="button" aria-label="Close">&times; Close</button>
+                  </div>
+                  <h3 class="tm-title"></h3>
+                  <ul class="tm-statements">
+                    <li class="tm-s1"></li>
+                    <li class="tm-s2"></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <!-- 05: Conspirology News -->
+        <section id="slide-conspirology" class="slide" data-num="05" data-title="Conspirology News">
+          <article class="card card-story">
+            <div class="story-text">
+              <div class="kicker-row r" style="--i:0">
+                <p class="kicker">05 &middot; Conspirology News</p>
+              </div>
+              <h2 class="headline r" style="--i:1">Are Reptilians Real?</h2>
+              <ul class="facts facts-statements">
+                <li class="r" style="--i:2"><strong>The clip:</strong> Behind Mayor Zohran Mamdani, Jordan J.G. Wright rolled his eyes backward.</li>
+                <li class="r" style="--i:3"><strong>The setting:</strong> City Hall. Mamdani was speaking about closing Rikers Island by 2032.</li>
+                <li class="r" style="--i:4"><strong>The reaction:</strong> Millions of views, and one question: is this man even human?</li>
+              </ul>
+            </div>
+            <aside class="story-visual r" style="--i:2">
+              <div class="visual-box visual-dossier">
+                <figure class="weather-preview-photo">
+                  <img src="assets/refs/wright-eyes.jpg" alt="Jordan J.G. Wright with his eyes rolled back, New York Post" />
+                  <span class="wp-badge">City Hall &middot; last week</span>
+                </figure>
+                <div class="dossier-note">
+                  <p class="dn-title">The question</p>
+                  <p class="dn-body">The clip went viral. People asked if he is even human.</p>
+                </div>
+              </div>
+            </aside>
+          </article>
+        </section>
+
+        <!-- 06: Final & Reference List -->
+        <section id="slide-final" class="slide" data-num="06" data-title="Final &amp; Reference List">
+          <article class="card card-final">
+            <header class="ref-head r" style="--i:0">
+              <div>
+                <p class="kicker">06 &middot; Final &amp; Reference List</p>
+                <h2 class="headline">Reference list</h2>
+              </div>
+              <p class="ref-signoff">Mahalo. Questions are open.</p>
+            </header>
+            <ol class="harvard-list r" style="--i:1">
+              <li>Abdullayev, Z. (2026). AUT | Money and Financial Choices | Survey Data. [online] Google Docs. Available at: <a href="https://docs.google.com/spreadsheets/d/1jg32pAt5OuP3DlGEdv659ErfD9unSe7R6TOL1OI2iSI/edit?gid=1029246419#gid=1029246419" target="_blank" rel="noopener noreferrer">https://docs.google.com/spreadsheets/d/1jg32pAt5OuP3DlGEdv659ErfD9unSe7R6TOL1OI2iSI/edit?gid=1029246419#gid=1029246419</a> [Accessed 26 Nov. 2026].</li>
+              <li>Chapman, M. and Landrum, J.J. (2026). Sales of &ldquo;Grand Theft Auto VI&rdquo; so far. [online] AP News. Available at: <a href="https://apnews.com/article/grand-theft-auto-gta-vice-city-playstation-15c69f76548ab5659bc3fe44a69756d8" target="_blank" rel="noopener noreferrer">https://apnews.com/article/grand-theft-auto-gta-vice-city-playstation-15c69f76548ab5659bc3fe44a69756d8</a> [Accessed 26 Nov. 2026].</li>
+              <li>Devil&rsquo;s pineapples. (2020). [Video] Directed by just another retard. YouTube. Available at: <a href="https://www.youtube.com/watch?v=fUNdkdiweOw" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=fUNdkdiweOw</a> [Accessed 26 Nov. 2026].</li>
+              <li>Dumplings -- REN-TV. (2022). [Video] Directed by YuRec. YouTube. Available at: <a href="https://youtu.be/vCpXcDJmEX8" target="_blank" rel="noopener noreferrer">https://youtu.be/vCpXcDJmEX8</a> [Accessed 26 Nov. 2026].</li>
+              <li>F1 (2026). Need to know: The most important facts, stats and trivia ahead of the 2026 Qatar grand prix. [online] f1. Available at: <a href="https://www.formula1.com/en/latest/article/need-to-know-the-most-important-facts-stats-and-trivia-ahead-of-the-2026-qatar-grand-prix.7Ayey9W9IVQ1yNkR8F6zEI" target="_blank" rel="noopener noreferrer">https://www.formula1.com/en/latest/article/need-to-know-the-most-important-facts-stats-and-trivia-ahead-of-the-2026-qatar-grand-prix.7Ayey9W9IVQ1yNkR8F6zEI</a> [Accessed 26 Nov. 2026].</li>
+              <li>France 24 (2026). Severe storm destroys thousands of homes, kills 3 in Brazil. [online] France 24. Available at: <a href="https://www.france24.com/en/live-news/20261120-severe-storm-destroys-thousands-of-homes-in-brazil" target="_blank" rel="noopener noreferrer">https://www.france24.com/en/live-news/20261120-severe-storm-destroys-thousands-of-homes-in-brazil</a> [Accessed 26 Nov. 2026].</li>
+              <li>HLTV.org (n.d.). BLAST bounty 2027 season 1 overview. [online] HLTV.org. Available at: <a href="https://www.hltv.org/events/8295/blast-bounty-2027-season-1" target="_blank" rel="noopener noreferrer">https://www.hltv.org/events/8295/blast-bounty-2027-season-1</a> [Accessed 26 Nov. 2026].</li>
+              <li>Madagascar Birds -- REN-TV. (2024). [Video] Directed by &#1040;&#1083;&#1100;&#1090;. YouTube. Available at: <a href="https://www.youtube.com/watch?v=4bEm0bx2SQY" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=4bEm0bx2SQY</a> [Accessed 26 Nov. 2026].</li>
+              <li>McCarthy, C. and Hussain, Z. (2026). NYC pol sets record straight as viral &ldquo;eyes&rdquo; video sparks looney lizard people theories: &ldquo;Full-blown &lsquo;men in black.&rsquo;&rdquo; [online] New York Post. Available at: <a href="https://nypost.com/2026/11/22/us-news/nyc-pol-sets-record-straight-as-viral-eyes-video-sparks-looney-lizard-people-theories/" target="_blank" rel="noopener noreferrer">https://nypost.com/2026/11/22/us-news/nyc-pol-sets-record-straight-as-viral-eyes-video-sparks-looney-lizard-people-theories/</a> [Accessed 26 Nov. 2026].</li>
+              <li>Meduza (2026). Lukashenko offers to fly Zelensky to Moscow for peace talks with Putin. &lsquo;What am I, his suitcase?&rsquo; Zelensky responds. [online] Meduza. Available at: <a href="https://meduza.io/en/news/2026/11/25/lukashenko-offers-to-fly-zelensky-to-moscow-for-peace-talks-with-putin-what-am-i-his-suitcase-zelensky-responds" target="_blank" rel="noopener noreferrer">https://meduza.io/en/news/2026/11/25/lukashenko-offers-to-fly-zelensky-to-moscow-for-peace-talks-with-putin-what-am-i-his-suitcase-zelensky-responds</a> [Accessed 26 Nov. 2026].</li>
+              <li>NVIDIA Corporation (2026). NVIDIA board reinstates Jensen Huang as president, CEO and board director. [online] NVIDIA Investor Relations. Available at: <a href="https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Board-Reinstates-Jensen-Huang-as-President-CEO-and-Board-Director/" target="_blank" rel="noopener noreferrer">https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Board-Reinstates-Jensen-Huang-as-President-CEO-and-Board-Director/</a> [Accessed 26 Nov. 2026].</li>
+              <li>Pipes, W. (2026). Video Game News Digest: Friday, November 20, 2026. [online] Warp Pipes. Available at: <a href="https://warppipes.com/en/articles/video-game-news-digest-2026-11-20" target="_blank" rel="noopener noreferrer">https://warppipes.com/en/articles/video-game-news-digest-2026-11-20</a> [Accessed 26 Nov. 2026].</li>
+              <li>Shoard, C. and Pulver, A. (2026). New James Bond announced ... and the name&rsquo;s Pattinson, Robert Pattinson. [online] The Guardian. Available at: <a href="https://www.theguardian.com/film/2026/nov/16/new-james-bond-announced-and-the-names-pattinson-robert-pattinson" target="_blank" rel="noopener noreferrer">https://www.theguardian.com/film/2026/nov/16/new-james-bond-announced-and-the-names-pattinson-robert-pattinson</a> [Accessed 26 Nov. 2026].</li>
+              <li>Sumljiv (2026). Chinggis warriors condemn BC.game to 0-3 exit in Singapore. [online] HLTV.org. Available at: <a href="https://www.hltv.org/news/46053/chinggis-warriors-condemn-bcgame-to-0-3-exit-in-singapore" target="_blank" rel="noopener noreferrer">https://www.hltv.org/news/46053/chinggis-warriors-condemn-bcgame-to-0-3-exit-in-singapore</a> [Accessed 26 Nov. 2026].</li>
+              <li>UZA.uz (2026). Sindarov and Gukesh draw their game. [online] UZA.uz. Available at: <a href="https://uza.uz/en/posts/sindarov-and-gukesh-draw-their-game_944831" target="_blank" rel="noopener noreferrer">https://uza.uz/en/posts/sindarov-and-gukesh-draw-their-game_944831</a> [Accessed 26 Nov. 2026].</li>
+              <li>Varghese, J. (2026). Jensen Huang lost $8.2b when he quit Nvidia, gained $33.9b on his return. [online] Gulf News. Available at: <a href="https://gulfnews.com/business/markets/jensen-huang-lost-82b-when-he-quit-nvidia-gained-339b-on-his-return-1.500760362" target="_blank" rel="noopener noreferrer">https://gulfnews.com/business/markets/jensen-huang-lost-82b-when-he-quit-nvidia-gained-339b-on-his-return-1.500760362</a> [Accessed 26 Nov. 2026].</li>
+              <li>Weinstein, B. (2026). NBA announces plans for &euro;10 billion initiative supported by leading global investors to develop arenas and entertainment districts across Europe. [online] NBA.com: NBA Communications. Available at: <a href="https://pr.nba.com/nba-global-investors-arenas-europe/" target="_blank" rel="noopener noreferrer">https://pr.nba.com/nba-global-investors-arenas-europe/</a> [Accessed 26 Nov. 2026].</li>
+            </ol>
+          </article>
+        </section>
 
       </div>
 
@@ -145,16 +912,28 @@
         <div class="ticker-label">This week</div>
         <div class="ticker-track">
           <div class="ticker-run">
-            <span>Bekhruz News &middot; weekly edition</span><i></i>
-            <span>In this edition: world, economy, technology, culture</span><i></i>
-            <span>Public Speaking project</span><i></i>
-            <span>Bekhruz News &middot; weekly edition</span><i></i>
-            <span>In this edition: world, economy, technology, culture</span><i></i>
-            <span>Public Speaking project</span><i></i>
+            <span>01 &middot; America Weather News</span><i></i>
+            <span>01 &middot; Tupanciret&atilde; tornado, live link lost</span><i></i>
+            <span>02 &middot; Sport &amp; Cybersport News</span><i></i>
+            <span>03 &middot; Economy Research</span><i></i>
+            <span>04 &middot; World News</span><i></i>
+            <span>05 &middot; Conspirology News</span><i></i>
+            <span>06 &middot; Final &amp; Reference List</span><i></i>
+            <span>01 &middot; America Weather News</span><i></i>
+            <span>01 &middot; Tupanciret&atilde; tornado, live link lost</span><i></i>
+            <span>02 &middot; Sport &amp; Cybersport News</span><i></i>
+            <span>03 &middot; Economy Research</span><i></i>
+            <span>04 &middot; World News</span><i></i>
+            <span>05 &middot; Conspirology News</span><i></i>
+            <span>06 &middot; Final &amp; Reference List</span><i></i>
           </div>
         </div>
       </footer>
 
+      <div id="glitch-fx" class="glitch-fx" aria-hidden="true">
+        <i class="gl-bar gl-b1"></i><i class="gl-bar gl-b2"></i><i class="gl-bar gl-b3"></i><i class="gl-bar gl-b4"></i>
+        <span class="gl-static"></span>
+      </div>
       <div id="wash" class="wash" aria-hidden="true"></div>
       <div class="grain" aria-hidden="true"></div>
 
@@ -192,6 +971,7 @@
 
   <audio id="music" src="assets/hawaiian-intro.mp3" preload="auto" loop></audio>
 
+  <script src="js/leaflet.js"></script>
   <script src="js/scene.js"></script>
   <script src="js/intro.js"></script>
   <script src="js/app.js"></script>
